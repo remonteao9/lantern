@@ -1,0 +1,185 @@
+
+/* ページ全体：2列レイアウト */
+.page {
+    display: flex;
+    gap: 70px;
+    max-width: 1500px;
+    margin: 0 auto;
+    background: #f8f8f8;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* 左カラム（Unity Canvas のエリア） */
+.left-column {
+    flex: 2;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ✅ 中央揃え */
+    background: #f8f8f8;
+}
+
+/* Canvas を包むラッパー（中央寄せ＋上配置） */
+.canvas-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ✅ 横方向中央 */
+    margin-top: 20px;
+}
+
+/* ✅ Unity Canvas本体 */
+#unity-canvas {
+    width: 100%;
+    max-width: 960px;
+    /* ✅ 最大幅を指定して縮小対応 */
+    aspect-ratio: 16 / 9;
+    /* ✅ 縦横比を維持しながら自動調整 */
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    display: block;
+}
+
+/* ✅ タイトル：Canvas に対して常に中央 */
+.game-title {
+    max-width: 960px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: clamp(24px, 3vw, 40px);
+    /* ✅ 画面サイズに応じて文字サイズ調整 */
+    font-weight: bold;
+    color: #333;
+}
+
+.game-summary {
+    max-width: 960px;
+    /* ✅ Canvas と同じ幅に揃える */
+    margin: 12px auto 0;
+    /* ✅ タイトルとの間に余白 */
+    text-align: center;
+    /* ✅ 中央寄せ */
+    font-size: clamp(16px, 1.8vw, 20px);
+    /* ✅ レスポンシブな文字サイズ */
+    line-height: 1.6;
+    /* ✅ 行間を少し広めに */
+    color: #555;
+    /* ✅ 落ち着いたグレー */
+    font-weight: 400;
+}
+
+/* 右カラム */
+.right-column {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+    box-sizing: border-box;
+    border-left: 1px solid #ddd;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/* アイテムカード */
+.item-card {
+    display: flex;
+    align-items: center;
+    /* ✅ 画像とテキストの高さを揃える */
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+/* ✅ テキストブロックを中央に */
+.item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* ✅ 縦方向中央 */
+    align-items: center;
+    /* ✅ 横方向中央（ブロックの中央に寄せる） */
+    text-align: center;
+    /* ✅ テキスト自体も中央 */
+    flex: 1;
+    /* ✅ 残りスペースをしっかり使う */
+}
+.item-card:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.item-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.item-desc {
+    font-size: 14px;
+    color: #555;
+}
+
+.item-thumb {
+    width: 192px;
+    height: 108px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 16px;
+    flex-shrink: 0;
+    background: #ddd;
+}
+
+.scroll-wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: 24px auto 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.scroll-inner {
+    display: inline-flex;
+    gap: 16px;
+    padding: 15px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.3s ease;
+    background-color:lightgrey
+}
+
+.scroll-item {
+    flex: 0 0 auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    /* 小さいので少し角丸も調整 */
+    overflow: hidden;
+    background: #ccc;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.scroll-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.scroll-item:hover {
+    cursor: default;
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
