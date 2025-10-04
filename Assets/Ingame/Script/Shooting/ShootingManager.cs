@@ -72,13 +72,8 @@ public class ShootingManager : MonoBehaviour
         canvas.SetActive(true);
         clearSource.Play();
         GameItems.SetItem("銃");
-        StartCoroutine(ClearCol());
     }
 
-    private IEnumerator ClearCol() {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("MainGameScene");
-    }
 
     private IEnumerator MakeUfo() {
         yield return new WaitForSeconds(3f);
