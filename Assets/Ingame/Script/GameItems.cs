@@ -1,21 +1,33 @@
 ﻿
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public　static class GameItems
 {
     public static Dictionary<string, int> itemNameToCode = new Dictionary<string, int>() {
-        { "銃", 11281 },
-        { "蚊", 12832 },
-        { "UFO", 10294 }
-    };
+        { "銃", 0 },
+        { "蚊", 0 },
+        { "UFO", 0 }
+    };// プレ対応はmain
+
+    static GameItems() {
+        RandomizeValues();
+    }
+
+
     // codeをタグにつける。タグについたコードが返ってきた(ボタンが押された)ら、対応するオブジェクトをメインに反映する。
-    public static Dictionary<string, GameObject> sceneToItemDict = new();
-    public static Dictionary<int, GameObject> codeToItemDict = new();
+    public static Dictionary<string, string> selectedItemNameDict = new(); // シーンごとの選択中アイテム名
 
     public static void SetItem(string itemName) {
-        WebBridge.GetGameItem(itemName);
         //sceneToItemDict[SceneManager.GetActiveScene().name] = ;
+        WebBridge.GetGameItem(itemName);
+    }
+
+    private static void RandomizeValues() {
+        var random = new System.Random();
+        var keys = new List<string>(itemNameToCode.Keys);
+
+        foreach (var key in keys) {
+            itemNameToCode[key] = random.Next(10000, 99999);
+        }
     }
 }

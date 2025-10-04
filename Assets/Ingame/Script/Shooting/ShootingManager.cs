@@ -30,17 +30,27 @@ public class ShootingManager : MonoBehaviour
         canvas.SetActive(false);
 
         foreach (GameObject target in targetList) {
-            target.transform.DOShakePosition(10, new Vector2(0.1f,0.1f), 10, 90,fadeOut:false).SetLoops(-1, LoopType.Restart);
+            target.transform.DOShakePosition(10, new Vector2(0.1f,0.1f), 10, 90,fadeOut:false).SetLoops(-1, LoopType.Restart).SetLink(target.gameObject);
         }
 
         StartCoroutine(MakeUfo());
     }
 
     private void Update() {
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButtonDown(0)) {
             RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             gunSorce.Play();
             if (hit.collider != null) {
+                GameObject obj = hit.collider.gameObject;
+                if (obj.tag == "UFO") {
+                    Debug.Log("UFO");
+                    GameItems.SetItem("UFO");
+                }
+                else {
+                    targetList.Remove(obj);
+                    // 蚊
+                    GameItems.SetItem("蚊");
+                }
                 StartCoroutine(BreakObject(hit));
             }
         }
@@ -51,14 +61,7 @@ public class ShootingManager : MonoBehaviour
         obj.transform.DOScale(new Vector3(0, 0, 0), 1f);
         hitSource.Play();
         yield return new WaitForSeconds(1.1f);
-        if (obj.tag == "ufo") {
-            GameItems.SetItem("UFO");
-        }
-        else{
-            targetList.Remove(obj);
-            // 蚊
-            GameItems.SetItem("蚊");
-        }
+
         Destroy(obj);
         if (targetList == null || targetList.Count == 0) {
             Clear();

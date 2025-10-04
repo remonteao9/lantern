@@ -65,36 +65,52 @@ mergeInto(LibraryManager.library, {
     });
   },
 
+  AddGameItem: function (sceneNamePtr) {
+    const sceneName = UTF8ToString(sceneNamePtr);
+    const item = {
+        sceneName,
+        imgPath: "images/item/item.png"
+    };
+    if (window.gameItems) {
+        window.gameItems.push(item);
+    }
+    else {
+        window.gameItems = [item];
+    }
+  },
   
   UpdateGameItems: function () {
     const scrollList = document.getElementById("scrollList");
+    scrollList.innerHTML = "";
 
-    const gameItems = [
-      "images/item/item.png",
-      "images/item/item.png",
-      "images/item/item.png",
-      "images/item/item.png"
-    ];
+    const gameItems = window.gameItems;
 
-    gameItems.forEach((src) => {
-      const item = document.createElement("div");
-      item.className = "scroll-item";
+    gameItems.forEach((data) => {
+      const itemDiv = document.createElement("div");
+      itemDiv.className = "scroll-item";
+      itemDiv.id = data.sceneName;
 
       const img = document.createElement("img");
-      img.src = src;
+      img.src = data.imgPath;
       img.alt = "item";
 
-      item.appendChild(img);
-      scrollList.appendChild(item);
+      itemDiv.appendChild(img);
+      scrollList.appendChild(itemDiv);
+
+      itemDiv.addEventListener("click", () => {
+        SendMessage("WebBridge", "SelectItem", data.sceneName );
+      });
     });
 
-    const count = gameItems.length;
-    let scale = 1;
-    if (count > 6 && count <= 12) scale = 0.9;
-    if (count > 12) scale = 0.8;
-
-    scrollList.style.transform = `scale(${scale})`;
     scrollList.style.transformOrigin = "center center";
+  },
+
+  UpdateItemIcon: function (sceneNamePtr, fileNamePtr) {
+    const sceneName = UTF8ToString(sceneNamePtr);
+    const fileNamePath = UTF8ToString(fileNamePtr);
+    const item = document.getElementById(sceneName);
+    const img = item.querySelector("img");
+    img.src = "images/item/" + fileNamePath;
   },
 
   UpdateItemText: function(itemNamePtr, itemIdPtr, sceneNamePtr) {
@@ -103,6 +119,9 @@ mergeInto(LibraryManager.library, {
     const sceneName = UTF8ToString(sceneNamePtr);
     const gameSummary = document.getElementById("game-summary");
 
+    if (gameSummary.innerHTML.includes(`id="${itemId}"`)) {
+      return;
+    }
     gameSummary.innerHTML = gameSummary.innerHTML.replace(
         new RegExp(`(${itemName})`, "g"),
         `<button id="${itemId}" class="word-button">$1</button>`
