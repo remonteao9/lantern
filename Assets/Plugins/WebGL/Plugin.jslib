@@ -128,7 +128,7 @@ mergeInto(LibraryManager.library, {
     );
     setTimeout(() => {
         const btn = document.getElementById(itemId);
-        console.log(btn);
+
         btn.addEventListener("click", () => {
             SendMessage("WebBridge", "SetGameItem", `${itemId}+${sceneName}` );
         });
