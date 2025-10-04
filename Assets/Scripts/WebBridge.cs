@@ -68,7 +68,8 @@ public class WebBridge : MonoBehaviour {
 
     public void SelectItem(string sceneName) {
         Debug.Log("select" + sceneName);
-        if (SceneManager.GetActiveScene().name != mainSceneName) return;
+        if (!MainGameManager.Instance) return;
+        MainGameManager.Instance.StartEditMode(sceneName);
     }
 
     private bool SceneExists(string sceneName) {

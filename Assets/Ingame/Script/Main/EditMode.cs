@@ -5,8 +5,7 @@ using static UnityEngine.Tilemaps.TilemapRenderer;
 public class EditMode : MonoBehaviour
 {
     public static EditMode instance = null;
-    public bool isEditMode = false;
-    GameObject editObject = null;
+    public GameObject editObject = null;
     private int sortOrder = 10;
 
     private void Awake() {
@@ -18,23 +17,25 @@ public class EditMode : MonoBehaviour
     }
 
     private void Update() {
-        if (isEditMode && Input.GetMouseButtonDown(0)) {
-
-            // クリック位置（スクリーン座標）→ ワールド座標に変換
+        if (editObject != null) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0f; // Zを0に（2D用）
 
-            // オブジェクト生成
-            GameObject obj = Instantiate(editObject, mousePos, Quaternion.identity);
+            if (Input.GetMouseButtonDown(0)) {                
+                mousePos.z = 0f; // Zを0に（2D用）
 
-            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-            if (sr != null) {
-                sr.sortingOrder = sortOrder;
-                sortOrder++;
+                // オブジェクト生成
+                GameObject obj = Instantiate(editObject, mousePos, Quaternion.identity);
+
+                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                if (sr != null) {
+                    sr.sortingOrder = sortOrder;
+                    sortOrder++;
+                }
+
+                editObject = null;
+                // jsの対象ボタンをオフにする
             }
 
-            isEditMode = false;
-            // jsの対象ボタンをオフにする
         }
     }
 }

@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainGameManager : MonoBehaviour
 {
     public static MainGameManager Instance { get; private set; }
 
-    [SerializeField] private static GameObject mosquito;
-    [SerializeField] private static GameObject gun;
-    [SerializeField] private static GameObject ufo;
+    [SerializeField] private GameObject mosquito;
+    [SerializeField] private GameObject gun;
+    [SerializeField] private GameObject ufo;
 
-    public static Dictionary<string, GameObject> itemNameToItemDict = new Dictionary<string, GameObject>() {
-        { "蚊", mosquito },
-        { "銃", gun },
-        { "UFO", ufo },
-    };
+    public static Dictionary<string, GameObject> itemNameToItemDict = new Dictionary<string, GameObject>();
 
 
 
@@ -28,6 +23,10 @@ public class MainGameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        itemNameToItemDict["蚊"] = mosquito;
+        itemNameToItemDict["銃"] = gun;
+        itemNameToItemDict["UFO"] = ufo;
     }
 
     public void StartEditMode(string scenenName) {
@@ -35,6 +34,6 @@ public class MainGameManager : MonoBehaviour
         var newObjName = GameItems.selectedItemNameDict[scenenName];
         var newObj = itemNameToItemDict[newObjName];
 
-        EditMode.instance.isEditMode = true;
+        EditMode.instance.editObject = newObj;
     }
 }
