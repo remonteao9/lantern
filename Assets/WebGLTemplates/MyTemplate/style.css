@@ -13,6 +13,7 @@
 .left-column {
     flex: 2;
     padding: 20px;
+    padding-bottom: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -28,7 +29,7 @@
     flex-direction: column;
     align-items: center;
     /* ✅ 横方向中央 */
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /* ✅ Unity Canvas本体 */
@@ -49,7 +50,7 @@
     max-width: 960px;
     width: 100%;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: clamp(24px, 3vw, 40px);
     /* ✅ 画面サイズに応じて文字サイズ調整 */
     font-weight: bold;
@@ -59,7 +60,7 @@
 .game-summary {
     max-width: 960px;
     /* ✅ Canvas と同じ幅に揃える */
-    margin: 12px auto 0;
+    margin: 3px auto 0;
     /* ✅ タイトルとの間に余白 */
     text-align: center;
     /* ✅ 中央寄せ */
