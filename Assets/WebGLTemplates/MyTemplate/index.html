@@ -12,8 +12,8 @@
       <div class="left-column">
         <div class="canvas-wrapper">
           <canvas id="unity-canvas" tabindex="-1" background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
-          <h1 class="game-title">タイトル</h1>
-          <p class="game-summary">
+          <h1 class="game-title", id="game-title">タイトル</h1>
+          <p class="game-summary", id="game-summary">
             概要<br>
             概要
           </p>
@@ -63,6 +63,10 @@
         productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }).then((instance) => {
+        window.unityInstance = instance;
+
+        unityInstance.SendMessage("WebBridge", "OnReady");
       });
 
       
