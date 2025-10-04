@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class MagnetController : MonoBehaviour
+{
+
     private Vector2 pos;
     private Vector2 newPos;
     private bool isActive = true;
@@ -12,12 +14,12 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.A)) {
                 newPos = pos;
-                newPos.x -= 0.008f;
+                newPos.x -= 0.02f;
                 transform.position = newPos;
             }
             else if (Input.GetKey(KeyCode.D)) {
                 newPos = pos;
-                newPos.x += 0.008f;
+                newPos.x += 0.02f;
                 transform.position = newPos;
             }
         }
