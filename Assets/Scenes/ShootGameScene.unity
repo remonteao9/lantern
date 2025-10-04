@@ -622,7 +622,7 @@ MonoBehaviour:
   - {fileID: 2057069807}
   mainCamera: {fileID: 1159228827}
   canvas: {fileID: 451849932}
-  ufo: {fileID: 967591257}
+  ufo: {fileID: 7469822782511333592, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
   hitSource: {fileID: 772579208}
   gunSorce: {fileID: 772579209}
   clearSource: {fileID: 772579210}
@@ -932,11 +932,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &967591257 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7469822782511333592, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-  m_PrefabInstance: {fileID: 6335643798778169073}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159228825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,63 +1548,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.5, y: 6.5}
   m_EdgeRadius: 0
---- !u!1001 &6335643798778169073
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.02512045
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645184927519737539, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7469822782511333592, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
-      propertyPath: m_Name
-      value: Ufo
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9cd65efbadc3a7e44b5591c0377bc433, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1623,4 +1561,3 @@ SceneRoots:
   - {fileID: 772579207}
   - {fileID: 738299579}
   - {fileID: 604110509}
-  - {fileID: 6335643798778169073}
