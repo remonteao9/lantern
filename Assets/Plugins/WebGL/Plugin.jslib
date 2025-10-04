@@ -95,6 +95,24 @@ mergeInto(LibraryManager.library, {
 
     scrollList.style.transform = `scale(${scale})`;
     scrollList.style.transformOrigin = "center center";
-  }
+  },
 
+  UpdateItemText: function(itemNamePtr, itemIdPtr, sceneNamePtr) {
+    const itemName = UTF8ToString(itemNamePtr);
+    const itemId = UTF8ToString(itemIdPtr);
+    const sceneName = UTF8ToString(sceneNamePtr);
+    const gameSummary = document.getElementById("game-summary");
+
+    gameSummary.innerHTML = gameSummary.innerHTML.replace(
+        new RegExp(`(${itemName})`, "g"),
+        `<button id="${itemId}" class="word-button">$1</button>`
+    );
+    setTimeout(() => {
+        const btn = document.getElementById(itemId);
+        console.log(btn);
+        btn.addEventListener("click", () => {
+            SendMessage("WebBridge", "SetGameItem", `${itemId}+${sceneName}` );
+        });
+    }, 0);
+  }
 });

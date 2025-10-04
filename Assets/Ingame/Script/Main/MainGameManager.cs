@@ -9,8 +9,6 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private static GameObject gun;
     [SerializeField] private static GameObject ufo;
 
-    public static List<GameObject> gameObjects = new List<GameObject>();
-
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -19,17 +17,5 @@ public class MainGameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    public static void GetMosquito() {
-        gameObjects.Add(mosquito);
-    }
-
-    public static void GetGun() {
-        gameObjects.Add (gun);
-    }
-
-    public static void GetUfo() {
-        gameObjects.Add(ufo);
     }
 }

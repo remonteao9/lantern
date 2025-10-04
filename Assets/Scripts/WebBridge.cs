@@ -6,16 +6,19 @@ public class WebBridge : MonoBehaviour {
     [DllImport("__Internal")] private static extern void SetSceneName(string name, string imgPath, string title, string summary);
     [DllImport("__Internal")] private static extern void UpdateContent(string activeSceneName);
     [DllImport("__Internal")] private static extern void UpdateGameItems();
+    [DllImport("__Internal")] private static extern void UpdateItemText(string itemName, string itemId, string sceneName);
 
-    private static WebBridge instance = null;
+    public static WebBridge instance = null;
 
     public void OnReady() {
         if (instance != null) Destroy(gameObject);
+#if UNITY_WEBGL && !UNITY_EDITOR
         SetSceneName("MainGameScene", "Main.png", "ランタン", "");
         SetSceneName("ShootGameScene", "Shoot.png", "蚊シューティング", "UFOは無視して、<br>蚊を銃で撃ち殺しましょう。");
 
         UpdateContent("MainGameScene");
         UpdateGameItems();
+#endif
 
         DontDestroyOnLoad(gameObject);
         instance = this;
@@ -26,7 +29,20 @@ public class WebBridge : MonoBehaviour {
         if (!SceneExists(sceneName)) return;
 
         SceneManager.LoadScene(sceneName);
+#if UNITY_WEBGL && !UNITY_EDITOR
         UpdateContent(sceneName);
+#endif
+    }
+
+    public void SetGameItem(string itemCodePlusSceneName) {
+        string[] parts = itemCodePlusSceneName.Split('+');
+        Debug.Log(parts[0]);
+        Debug.Log(parts[1]);
+        //GameItems.sceneToItemDict[parts[1]] = itemCode;
+    }
+
+    public static void GetGameItem(string itemName) {
+        UpdateItemText(itemName, GameItems.itemNameToCode[itemName].ToString(), SceneManager.GetActiveScene().name);
     }
 
     private bool SceneExists(string sceneName) {

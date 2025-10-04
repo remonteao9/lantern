@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -51,10 +52,12 @@ public class ShootingManager : MonoBehaviour
         hitSource.Play();
         yield return new WaitForSeconds(1.1f);
         if (obj.tag == "ufo") {
-            MainGameManager.GetUfo();
+            GameItems.SetItem("UFO");
         }
         else{
             targetList.Remove(obj);
+            // 蚊
+            GameItems.SetItem("蚊");
         }
         Destroy(obj);
         if (targetList == null || targetList.Count == 0) {
@@ -65,12 +68,12 @@ public class ShootingManager : MonoBehaviour
     private void Clear() {
         canvas.SetActive(true);
         clearSource.Play();
+        GameItems.SetItem("銃");
         StartCoroutine(ClearCol());
     }
 
     private IEnumerator ClearCol() {
         yield return new WaitForSeconds(5f);
-        MainGameManager.GetMosquito();
         SceneManager.LoadScene("MainGameScene");
     }
 
@@ -79,7 +82,4 @@ public class ShootingManager : MonoBehaviour
         Instantiate(ufo);
     }
 
-    public void GetGun() {
-        MainGameManager.GetGun();
-    }
 }

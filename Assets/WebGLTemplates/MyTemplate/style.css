@@ -184,3 +184,17 @@
 .scroll-wrapper::-webkit-scrollbar {
     display: none;
 }
+
+.word-button {
+    color: red;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.word-button:active {
+    transform: scale(0.95);
+    background: #ffdddd;
+}
