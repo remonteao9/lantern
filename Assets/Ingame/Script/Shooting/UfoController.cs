@@ -15,7 +15,7 @@ public class UfoController : MonoBehaviour {
         // 左端から右端へ移動
         transform.position = new Vector3(leftX, transform.position.y, transform.position.z);
 
-        transform.DOMoveX(rightX * 2, moveDuration / 2)
+        transform.DOMoveX(rightX * 2, moveDuration)
             .SetEase(Ease.Linear).SetLink(gameObject);
     }
 }
