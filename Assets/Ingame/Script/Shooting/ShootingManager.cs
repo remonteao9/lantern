@@ -51,7 +51,7 @@ public class ShootingManager : MonoBehaviour
         hitSource.Play();
         yield return new WaitForSeconds(1.1f);
         if (obj.tag == "ufo") {
-            ItemManager.GetUfo();
+            MainGameManager.GetUfo();
         }
         else{
             targetList.Remove(obj);
@@ -70,7 +70,7 @@ public class ShootingManager : MonoBehaviour
 
     private IEnumerator ClearCol() {
         yield return new WaitForSeconds(5f);
-        ItemManager.GetMosquito();
+        MainGameManager.GetMosquito();
         SceneManager.LoadScene("MainGameScene");
     }
 
@@ -80,6 +80,6 @@ public class ShootingManager : MonoBehaviour
     }
 
     public void GetGun() {
-        ItemManager.GetGun();
+        MainGameManager.GetGun();
     }
 }
