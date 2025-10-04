@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WebBridge : MonoBehaviour {
-    [DllImport("__Internal")] private static extern void SetSceneName(string name, string imgPath, string title);
+    [DllImport("__Internal")] private static extern void SetSceneName(string name, string imgPath, string title, string summary);
     [DllImport("__Internal")] private static extern void UpdateContent(string activeSceneName);
     [DllImport("__Internal")] private static extern void UpdateGameItems();
 
     public void OnReady() {
-        SetSceneName("MainGameScene", "Main.png", "ランタン");
-        SetSceneName("ShootGameScene", "Shoot.png", "蚊シューティング");
+        SetSceneName("MainGameScene", "Main.png", "ランタン", "");
+        SetSceneName("ShootGameScene", "Shoot.png", "蚊シューティング", "UFOは無視して、<br>蚊を銃で撃ち殺しましょう。");
 
         UpdateContent("MainGameScene");
         UpdateGameItems();

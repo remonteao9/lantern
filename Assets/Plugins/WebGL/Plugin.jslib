@@ -10,14 +10,16 @@ mergeInto(LibraryManager.library, {
     console.log("[From Unity]:", msg);
   },
 
-  SetSceneName: function (sceneNamePtr, imgPathPtr, titlePtr) {
+  SetSceneName: function (sceneNamePtr, imgPathPtr, titlePtr, summaryPtr) {
     const sceneName = UTF8ToString(sceneNamePtr);
     const imgPath = 'images/thumb/' + UTF8ToString(imgPathPtr);
     const title = UTF8ToString(titlePtr);
+    const summary = UTF8ToString(summaryPtr);
     const item = {
         title,
         sceneName,
-        imgPath
+        imgPath,
+        summary
     };
     if (window.cardItems) {
         window.cardItems.push(item);
@@ -41,6 +43,7 @@ mergeInto(LibraryManager.library, {
     items.forEach((item) => {
       if (item.sceneName == activeSceneName) {
         gameTitle.textContent = item.title;
+        gameSummary.innerHTML = item.summary;
         return; 
       }
       const card = document.createElement("div");
