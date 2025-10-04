@@ -7,7 +7,10 @@ public class WebBridge : MonoBehaviour {
     [DllImport("__Internal")] private static extern void UpdateContent(string activeSceneName);
     [DllImport("__Internal")] private static extern void UpdateGameItems();
 
+    private static WebBridge instance = null;
+
     public void OnReady() {
+        if (instance != null) Destroy(gameObject);
         SetSceneName("MainGameScene", "Main.png", "ランタン", "");
         SetSceneName("ShootGameScene", "Shoot.png", "蚊シューティング", "UFOは無視して、<br>蚊を銃で撃ち殺しましょう。");
 
@@ -15,6 +18,7 @@ public class WebBridge : MonoBehaviour {
         UpdateGameItems();
 
         DontDestroyOnLoad(gameObject);
+        instance = this;
 
         SceneManager.LoadScene("MainGameScene");
     }
