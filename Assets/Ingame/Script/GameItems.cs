@@ -6,8 +6,11 @@ public　static class GameItems
     public static Dictionary<string, int> itemNameToCode = new Dictionary<string, int>() {
         { "銃", 0 },
         { "蚊", 0 },
-        { "UFO", 0 }
-    };// プレ対応はmain
+        { "UFO", 0 },
+        { "磁石", 0 },
+        { "鉄", 0 },
+        { "磁力", 0 },
+    };
 
     static GameItems() {
         RandomizeValues();

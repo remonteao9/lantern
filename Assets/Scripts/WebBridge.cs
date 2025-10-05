@@ -28,7 +28,7 @@ public class WebBridge : MonoBehaviour {
         AddGameItem(sceneName);
 
         sceneName = "MagnetGameScene";
-        SetSceneName(sceneName, "Magnet.png", "ふわふわキープ", "磁石を落とさないようにしよう。<br>Aで右、Dで左に移動");
+        SetSceneName(sceneName, "Magnet.png", "ふわふわキープ", "磁力が反転した。磁石を使って鉄を落とさないようにしよう。<br>Aで右、Dで左に移動");
         AddGameItem(sceneName);
 
         UpdateContent("MainGameScene");

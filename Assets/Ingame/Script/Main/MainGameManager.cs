@@ -8,6 +8,9 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private GameObject mosquito;
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject ufo;
+    [SerializeField] private GameObject magnet;
+    [SerializeField] private GameObject iron;
+    [SerializeField] private GameObject magneticForce;
 
     public static Dictionary<string, GameObject> itemNameToItemDict = new Dictionary<string, GameObject>();
 
@@ -27,6 +30,9 @@ public class MainGameManager : MonoBehaviour
         itemNameToItemDict["蚊"] = mosquito;
         itemNameToItemDict["銃"] = gun;
         itemNameToItemDict["UFO"] = ufo;
+        itemNameToItemDict["磁石"] = magnet;
+        itemNameToItemDict["鉄"] = iron;
+        itemNameToItemDict["磁力"] = magneticForce;
     }
 
     public void StartEditMode(string scenenName) {

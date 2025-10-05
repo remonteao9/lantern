@@ -102,18 +102,18 @@ public class GravityGameController : MonoBehaviour {
     private void GameClear() {
         magnetController.ChengeActive(false);
         clearPanel.SetActive(true);
-        //磁石入手
+        GameItems.SetItem("磁石");
     }
 
     private void GameOver() {
         magnetController.ChengeActive(false);
         gameOverPanel.SetActive(true);
-        //鉄を入手
+        GameItems.SetItem("鉄");
     }
 
     private void IronUP() {
         magnetController.ChengeActive(false);
         IronUpPanel.SetActive(true);
-        //反重力を入手
+        GameItems.SetItem("磁力");
     }
 }
