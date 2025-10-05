@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using DG.Tweening;
@@ -22,6 +23,8 @@ public class ShootingManager : MonoBehaviour
     [SerializeField] private AudioClip gunSound;
     [SerializeField] private AudioClip clearSound;
 
+    private Action clearAction;
+
 
     private void Awake() {
         hitSource.clip = hitSound;
@@ -34,6 +37,8 @@ public class ShootingManager : MonoBehaviour
         }
 
         StartCoroutine(MakeUfo());
+
+        clearAction += Clear;
     }
 
     private void Update() {
@@ -64,11 +69,12 @@ public class ShootingManager : MonoBehaviour
 
         Destroy(obj);
         if (targetList == null || targetList.Count == 0) {
-            Clear();
+            clearAction?.Invoke();
         }
     }
 
     private void Clear() {
+        clearAction -= Clear;
         canvas.SetActive(true);
         clearSource.Play();
         GameItems.SetItem("銃");
