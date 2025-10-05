@@ -17,13 +17,7 @@ public class MainSceneManager : MonoBehaviour {
         audioSource.Play();
     }
 
-    private void GameClear() {
-        clearPanel.SetActive(true);
-        playerController.ChengeActive(false);
-        audioSource.loop = false;
-        audioSource.clip = clearSE;
-        audioSource.Play();
-    }
+
 
 
 }
