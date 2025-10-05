@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class MNActor : MonoBehaviour{
+public class MNActor : MonoBehaviour{
     public Rigidbody2D rb;
 
     public virtual void Awake() {
@@ -20,7 +20,7 @@ public abstract class MNActor : MonoBehaviour{
     }
 
     public virtual void HitMagnet() {
-        Debug.Log(1233);
+        
         rb.AddForce(Vector3.up * 7f, ForceMode2D.Impulse);
     }
 

@@ -27,12 +27,12 @@ public class PlayerController : MNActor {
 
             if (Input.GetKey(KeyCode.A)) {
                 newPos = pos;
-                newPos.x -= 0.008f;
+                newPos.x -= 7f * Time.deltaTime;
                 transform.position = newPos;
             }
             else if (Input.GetKey(KeyCode.D)) {
                 newPos = pos;
-                newPos.x += 0.008f;
+                newPos.x += 7f * Time.deltaTime;
                 transform.position = newPos;
             }
         }
@@ -47,6 +47,12 @@ public class PlayerController : MNActor {
             GameClear();
         }
     }
+    public void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name == "enemy") {
+            Destroy(gameObject);
+        }
+    }
+
     private void GameClear() {
         clearPanel.SetActive(true);
         this.ChengeActive(false);

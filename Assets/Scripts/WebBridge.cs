@@ -20,7 +20,7 @@ public class WebBridge : MonoBehaviour {
     public void OnReady() {
         if (instance != null) Destroy(gameObject);
 #if UNITY_WEBGL && !UNITY_EDITOR
-        SetSceneName(mainSceneName, "Main.png", "ランタン", "");
+        SetSceneName(mainSceneName, "Main.png", "運動会", "メイン種目！ゴールできない...");
 
         // シューティング
         var sceneName = "ShootGameScene";

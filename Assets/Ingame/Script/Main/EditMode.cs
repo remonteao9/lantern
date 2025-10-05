@@ -93,6 +93,6 @@ public class EditMode : MonoBehaviour
         placementModeWindow.SetActive(true);
         placementModeWindow.transform.DOKill();
         placementModeWindow.transform.localScale = Vector3.one;
-        placementModeWindow.transform.DOScale(Vector3.zero, 0.5f).SetDelay(0.5f).OnComplete(() => placementModeWindow.SetActive(false));
+        placementModeWindow.transform.DOScale(Vector3.zero, 0.1f).SetDelay(0.5f).OnComplete(() => placementModeWindow.SetActive(false));
     }
 }

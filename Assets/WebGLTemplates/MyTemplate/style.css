@@ -1,5 +1,5 @@
 
-/* ページ全体：2列レイアウト */
+
 .page {
     display: flex;
     gap: 70px;
@@ -9,7 +9,7 @@
     font-family: "Noto Sans JP", sans-serif;
 }
 
-/* 左カラム（Unity Canvas のエリア） */
+
 .left-column {
     flex: 2;
     padding: 20px;
@@ -18,62 +18,61 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* ✅ 中央揃え */
+
     background: #f8f8f8;
 }
 
-/* Canvas を包むラッパー（中央寄せ＋上配置） */
+
 .canvas-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* ✅ 横方向中央 */
+
     margin-top: 10px;
 }
 
-/* ✅ Unity Canvas本体 */
+
 #unity-canvas {
     width: 100%;
     max-width: 960px;
-    /* ✅ 最大幅を指定して縮小対応 */
+
     aspect-ratio: 16 / 9;
-    /* ✅ 縦横比を維持しながら自動調整 */
+    
     background: #000;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     display: block;
 }
 
-/* ✅ タイトル：Canvas に対して常に中央 */
+
 .game-title {
     max-width: 960px;
     width: 100%;
     text-align: center;
     margin-top: 10px;
     font-size: clamp(24px, 3vw, 40px);
-    /* ✅ 画面サイズに応じて文字サイズ調整 */
+    
     font-weight: bold;
     color: #333;
 }
 
 .game-summary {
     max-width: 960px;
-    /* ✅ Canvas と同じ幅に揃える */
+    
     margin: 3px auto 0;
-    /* ✅ タイトルとの間に余白 */
+    
     text-align: center;
-    /* ✅ 中央寄せ */
+    
     font-size: clamp(16px, 1.8vw, 20px);
-    /* ✅ レスポンシブな文字サイズ */
+    
     line-height: 1.6;
-    /* ✅ 行間を少し広めに */
+    
     color: #555;
-    /* ✅ 落ち着いたグレー */
     font-weight: 400;
 }
 
-/* 右カラム */
+
 .right-column {
     flex: 1;
     padding: 20px;
@@ -84,11 +83,10 @@
     overflow-y: auto;
 }
 
-/* アイテムカード */
+
 .item-card {
     display: flex;
     align-items: center;
-    /* ✅ 画像とテキストの高さを揃える */
     background: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -98,18 +96,13 @@
     transition: transform 0.2s ease;
 }
 
-/* ✅ テキストブロックを中央に */
 .item-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* ✅ 縦方向中央 */
     align-items: center;
-    /* ✅ 横方向中央（ブロックの中央に寄せる） */
     text-align: center;
-    /* ✅ テキスト自体も中央 */
     flex: 1;
-    /* ✅ 残りスペースをしっかり使う */
 }
 .item-card:hover {
     cursor: pointer;
