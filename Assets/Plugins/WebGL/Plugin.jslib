@@ -103,7 +103,11 @@ mergeInto(LibraryManager.library, {
     const buttons = scrollList.querySelectorAll(".scroll-item");
     buttons.forEach((btn, index) => {
       btn.addEventListener("click", () => {
-        if (btn.classList.contains("selected")) return;
+        if (btn.classList.contains("selected")) {
+          btn.classList.remove("selected")
+          SendMessage("WebBridge", "UnSelectItem", gameItems[index].sceneName);
+          return;
+        }
         buttons.forEach(b => b.classList.remove("selected"));
 
         btn.classList.add("selected");

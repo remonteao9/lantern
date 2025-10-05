@@ -58,4 +58,9 @@ public class EditMode : MonoBehaviour
 
         }
     }
+
+    public void ChangeEdit(GameObject obj, string sceneName) {
+        editObject = obj;
+        editObjectScene = sceneName;
+    }
 }

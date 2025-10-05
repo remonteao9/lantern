@@ -40,7 +40,11 @@ public class MainGameManager : MonoBehaviour
         var newObjName = GameItems.selectedItemNameDict[scenenName];
         var newObj = itemNameToItemDict[newObjName];
 
-        EditMode.instance.editObject = newObj;
-        EditMode.instance.editObjectScene = scenenName;
+        EditMode.instance.ChangeEdit(newObj, scenenName);
+    }
+
+    public void EndEditMode(string sceneName) {
+        if (EditMode.instance == null) return;
+        EditMode.instance.ChangeEdit(null, string.Empty);
     }
 }
