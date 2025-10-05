@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7846762386776622393}
   - component: {fileID: 7736556886263025862}
   - component: {fileID: 4038066516245404783}
+  - component: {fileID: 8252754659985401790}
   m_Layer: 0
   m_Name: MN_Iron
   m_TagString: Untagged
@@ -148,3 +149,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8252754659985401790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593036129802282498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166645497f5c790438610ad32e0b22a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}

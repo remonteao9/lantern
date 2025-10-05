@@ -15,8 +15,8 @@ public class MNMosquito : MNActor
         var actor = collision.gameObject.GetComponent<MNActor>();
         if (actor != null){
             actor.HitMosquito();
+            Destroy(gameObject);
         }
-        StartCoroutine(DestroyWait(1));
     }
 
 }
