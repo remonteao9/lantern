@@ -16,6 +16,7 @@ public class EditMode : MonoBehaviour
     public string editObjectScene = string.Empty;
     public GameObject editObject = null;
     private int sortOrder = 10;
+    private CircleCollider2D editCol;
 
     private void Awake() {
         instance = this;
@@ -40,8 +41,23 @@ public class EditMode : MonoBehaviour
 
             transform.position = worldPos;
 
-            if (Input.GetMouseButtonDown(0)) {                
+            if (!editCol) {
+                editCol = editObject.GetComponent<CircleCollider2D>();
+            }
+            if (editCol != null) {
+                Vector2 center = (Vector2)worldPos + editCol.offset;
+                bool isOverlap = Physics2D.OverlapCircle(center, editCol.radius) != null;
+                if (isOverlap) {
+                    editSprite.color = new Color(0, 0, 0, 0);
+                    return;
+                }
+                else {
+                    editSprite.color = new Color(0, 0, 0, 0.5f);
+                }
+            }
 
+
+            if (Input.GetMouseButtonDown(0)) {
                 // オブジェクト生成
                 GameObject obj = Instantiate(editObject, worldPos, Quaternion.identity);
 
@@ -57,6 +73,7 @@ public class EditMode : MonoBehaviour
 #endif
                 editObjectScene = string.Empty;
                 editSprite.enabled = false;
+                editCol = null;
             }
 
         }
