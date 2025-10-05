@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8009619178272362132}
   - component: {fileID: 3347625819671688728}
   - component: {fileID: 2202976689362163400}
+  - component: {fileID: 3674065721501364154}
   m_Layer: 0
-  m_Name: Magnet
+  m_Name: MN_Magnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642eab23b1d2d4f498d4c8f6acf30567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 0}
+  rb: {fileID: 0}
   audioSource: {fileID: 2202976689362163400}
   SE: {fileID: 8300000, guid: f00d8c0f9dda2654e9f7908fa6ec9226, type: 3}
 --- !u!82 &2202976689362163400
@@ -196,3 +199,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &3674065721501364154
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790806381008375386}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

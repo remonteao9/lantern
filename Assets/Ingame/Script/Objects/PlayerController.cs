@@ -2,12 +2,13 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class PlayerController : Default {
+public class PlayerController : MNActor {
     private Vector2 pos;
     private Vector2 newPos;
     private bool isActive = true;
 
-    private void Awake() {
+    public override void Awake() {
+        base.Awake();
         Dao.player = this;
     }
 
@@ -37,27 +38,12 @@ public class PlayerController : Default {
         isActive = wat;
     }
 
-    public override IEnumerator Mosquito() {
-        this.transform.DOScale(new Vector3(0, 0, 0), 1f);
-        yield return new WaitForSeconds(1.1f);
-        Destroy(this);
+    public override void HitMosquito() {
+        this.transform.DOScale(new Vector3(0, 0, 0), 1f).OnComplete(() => Destroy(gameObject));
     }
 
-    public override IEnumerator Gun() {
-        this.transform.DOScale(new Vector3(0, 0, 0), 1f);
-        yield return new WaitForSeconds(1.1f);
-        Destroy(this);
+    public override void HitGun() {
+        this.transform.DOScale(new Vector3(0, 0, 0), 1f).OnComplete(() => Destroy(gameObject));
     }
 
-    public override IEnumerator Ufo() {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Magunet() {
-        transform.position += Vector3.up * 7f;
-    }
-
-    public override IEnumerator Gravity() {
-        throw new System.NotImplementedException();
-    }
 }

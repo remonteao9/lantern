@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetItemController : MonoBehaviour
+public class MagnetItemController : MNActor
 {
     private Camera cam;
 
@@ -11,19 +11,23 @@ public class MagnetItemController : MonoBehaviour
     [SerializeField] private AudioClip SE;
     public GameObject Selected { get; private set; }
 
-    void Awake() {
+    public override void Awake() {
+        base.Awake();
         cam = cam ? cam : Camera.main;
         Vector3 wp = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 point = new Vector2(wp.x, wp.y);
 
         // クリック座標にある2Dコライダーを取得
         Collider2D col = Physics2D.OverlapPoint(point);
+        Debug.Log(col);
         if (col) {
-            if (col.GetComponent<TargetController>() != null) {
-                col.GetComponent<TargetController>().Magunet();
+            var actor = col.GetComponent<MNActor>();
+            if (actor != null) {
+                actor.HitMagnet();
             }
             audioSource.clip = SE;
             audioSource.Play();
         }
+        StartCoroutine(DestroyWait(1));
     }
 }

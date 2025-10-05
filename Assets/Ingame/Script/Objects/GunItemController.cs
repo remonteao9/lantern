@@ -20,7 +20,7 @@ public class GunItemController : MonoBehaviour
         Collider2D col = Physics2D.OverlapPoint(point);
         if (col) {
             if(col.GetComponent<TargetController>() != null) {
-                col.GetComponent<TargetController>().Gun();
+                col.GetComponent<TargetController>().HitGun();
             }
             audioSource.clip = shootSE;
             audioSource.Play();
