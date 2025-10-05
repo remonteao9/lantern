@@ -1,10 +1,14 @@
 ﻿
+using System.Runtime.InteropServices;
 using UnityEngine;
 using static UnityEngine.Tilemaps.TilemapRenderer;
 
 public class EditMode : MonoBehaviour
 {
+    [DllImport("__Internal")] private static extern void DisabledItemButton(string sceneName);
+
     public static EditMode instance = null;
+    public string editObjectScene = string.Empty;
     public GameObject editObject = null;
     private int sortOrder = 10;
 
@@ -33,7 +37,8 @@ public class EditMode : MonoBehaviour
                 }
 
                 editObject = null;
-                // jsの対象ボタンをオフにする
+                DisabledItemButton(editObjectScene);
+                editObjectScene = string.Empty;
             }
 
         }
