@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class MosquitoController : MNActor
+public class MNMosquito : MNActor
 {
     [SerializeField] private float speed = 3f; // 移動速度
 
@@ -12,9 +12,11 @@ public class MosquitoController : MNActor
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Target")){
-            collision.GetComponent<TargetController>().HitMosquito();
+        var actor = collision.gameObject.GetComponent<MNActor>();
+        if (actor != null){
+            actor.HitMosquito();
         }
+        StartCoroutine(DestroyWait(1));
     }
 
 }

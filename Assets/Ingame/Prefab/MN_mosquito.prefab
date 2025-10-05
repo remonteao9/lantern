@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2754601973821126430}
   - component: {fileID: 2982706699418964826}
   - component: {fileID: 2958106637506695161}
+  - component: {fileID: 5465776712896188962}
   m_Layer: 0
   m_Name: MN_mosquito
   m_TagString: Untagged
@@ -98,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcbbe0b85027f04291b4bace21ca5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7665039936293129611, guid: 4d960713e47b6694d9f0687b74400ba7, type: 3}
+  col: {fileID: 0}
+  rb: {fileID: 0}
   speed: 3
-  obj: {fileID: 7649828673963864446}
 --- !u!58 &2958106637506695161
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,3 +137,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!50 &5465776712896188962
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649828673963864446}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

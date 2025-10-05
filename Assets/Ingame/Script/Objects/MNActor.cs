@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MNActor : MonoBehaviour{
-    public CircleCollider2D col;
     public Rigidbody2D rb;
 
     public virtual void Awake() {
-        col = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     public virtual void HitMosquito() {
-        Destroy(gameObject);
+        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => Destroy(gameObject));
     }
 
     public virtual void HitGun() {

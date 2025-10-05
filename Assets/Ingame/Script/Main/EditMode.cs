@@ -52,7 +52,7 @@ public class EditMode : MonoBehaviour
                     return;
                 }
                 else {
-                    editSprite.color = new Color(0, 0, 0, 0.5f);
+                    editSprite.color = new Color(1, 1, 1, 0.5f);
                 }
             }
 
