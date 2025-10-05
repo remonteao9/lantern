@@ -16,7 +16,7 @@ public abstract class MNActor : MonoBehaviour{
     }
 
     public virtual void HitGun() {
-        Destroy(gameObject);
+        this.transform.DOScale(Vector3.zero, 1f).OnComplete(() => Destroy(gameObject));
     }
 
     public virtual void HitMagnet() {

@@ -38,12 +38,4 @@ public class PlayerController : MNActor {
         isActive = wat;
     }
 
-    public override void HitMosquito() {
-        this.transform.DOScale(new Vector3(0, 0, 0), 1f).OnComplete(() => Destroy(gameObject));
-    }
-
-    public override void HitGun() {
-        this.transform.DOScale(new Vector3(0, 0, 0), 1f).OnComplete(() => Destroy(gameObject));
-    }
-
 }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5324379599231676563}
   - component: {fileID: 4237771746974959357}
   - component: {fileID: 1305150046824555877}
-  - component: {fileID: 1641600839540253731}
+  - component: {fileID: 8438338086921541941}
+  - component: {fileID: 2153263509920008991}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: MN_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6458709, y: 0.71586156, z: -0.02512045}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3c335e2f044436e48a7e7099ad1423e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40104fa6326374342929dd8684104338, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 7.19}
+  m_Size: {x: 6.28, y: 4.94}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -182,7 +183,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1641600839540253731
+--- !u!50 &8438338086921541941
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825951929234483733}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2153263509920008991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,8 +219,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5825951929234483733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3bd32ab67615342969127c66bb89f8, type: 3}
+  m_Script: {fileID: 11500000, guid: efdbd42d028a49342bf682a5dcc21b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  shootSE: {fileID: 0}
+  rb: {fileID: 0}
+  audioSource: {fileID: 1305150046824555877}
+  shootSE: {fileID: 8300000, guid: 505aaf04ba4959a44a95e5e403e43b4e, type: 3}
