@@ -5,6 +5,8 @@ using static UnityEngine.Tilemaps.TilemapRenderer;
 
 public class EditMode : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer editSprite;
+
     [DllImport("__Internal")] private static extern void DisabledItemButton(string sceneName);
 
     public static EditMode instance = null;
@@ -14,6 +16,7 @@ public class EditMode : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        editSprite.enabled = false;
     }
 
     private void OnDestroy() {
@@ -22,13 +25,22 @@ public class EditMode : MonoBehaviour
 
     private void Update() {
         if (editObject != null) {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (!editSprite.enabled) {
+                editSprite.sprite = editObject.GetComponent<SpriteRenderer>().sprite;
+                editSprite.enabled = true;
+            }
+            Vector3 mousePos = Input.mousePosition;
+
+            mousePos.z = Mathf.Abs(Camera.main.transform.position.z);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+            worldPos.z = 0f;
+
+            transform.position = worldPos;
 
             if (Input.GetMouseButtonDown(0)) {                
-                mousePos.z = 0f; // Zを0に（2D用）
 
                 // オブジェクト生成
-                GameObject obj = Instantiate(editObject, mousePos, Quaternion.identity);
+                GameObject obj = Instantiate(editObject, worldPos, Quaternion.identity);
 
                 SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
                 if (sr != null) {
@@ -37,8 +49,11 @@ public class EditMode : MonoBehaviour
                 }
 
                 editObject = null;
+#if UNITY_WEBGL && !UNITY_EDITOR
                 DisabledItemButton(editObjectScene);
+#endif
                 editObjectScene = string.Empty;
+                editSprite.enabled = false;
             }
 
         }

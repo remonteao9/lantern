@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MainSceneManager : MonoBehaviour {
 
-    [SerializeField] private GroundLooper groundLooper;
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject clearPanel;
@@ -14,7 +13,6 @@ public class MainSceneManager : MonoBehaviour {
 
     private void Awake() {
         clearPanel.SetActive(false);
-        groundLooper.endGame += GameClear;
         audioSource.clip = bgm;
         audioSource.Play();
     }

@@ -5,6 +5,14 @@ public class PlayerController : MonoBehaviour {
     private Vector2 newPos;
     private bool isActive = true;
 
+    private void Awake() {
+        Dao.player = this;
+    }
+
+    private void OnDestroy() {
+        Dao.player = null;
+    }
+
     private void Update() {
 
         if (isActive) {
