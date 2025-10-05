@@ -8,14 +8,13 @@ public class GravityGameController : MonoBehaviour {
     [SerializeField] private GameObject clearPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject IronUpPanel;
-    [SerializeField] private GameObject gameStartPanel;
     [SerializeField] private MagnetController magnetController;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
     private float checkDistance = 10f; // 下方向にRayを飛ばす距離
-    private float fallSpeed = 3f;      // 落下速度
-    private float riseSpeed = 3f;      // 上昇速度
+    private float fallSpeed = 2f;      // 落下速度
+    private float riseSpeed = 4f;      // 上昇速度
     private float moveSpeed = 8f;     // 横移動速度
     private float stopHeight = 10f;    // 上昇上限（越えない）
 
@@ -25,31 +24,14 @@ public class GravityGameController : MonoBehaviour {
 
     private bool isActive = false;
 
-    // 画面のワールド座標境界
-    private float minX, maxX, minY, maxY;
-
     private void Awake() {
-        // 画面サイズ（スクリーン座標）をワールド座標に変換
-        Vector3 screenBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 screenTopRight = Camera.main.ScreenToWorldPoint(new Vector3(940, 560, 0));
-
-        minX = screenBottomLeft.x;
-        minY = screenBottomLeft.y;
-        maxX = screenTopRight.x;
-        maxY = screenTopRight.y;
 
         clearPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         IronUpPanel.SetActive(false);
-        StartCoroutine(GameStart());
+        isActive = true;
         audioSource.clip = audioClip;
         audioSource.Play();
-    }
-
-    private IEnumerator GameStart() {
-        yield return new WaitForSeconds(3);
-        gameStartPanel.SetActive(false);
-        isActive = true;
     }
 
     void Update() {
@@ -74,17 +56,15 @@ public class GravityGameController : MonoBehaviour {
                 iron.transform.position += Vector3.down * fallSpeed * Time.deltaTime;
             }
 
-            // ===== 画面内にClamp =====
-            Vector3 pos = iron.transform.position;
-            pos.x = Mathf.Clamp(pos.x, minX, maxX);
-            pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
-            if (Mathf.Approximately(pos.y, minY)) {
-                GameOver(); // メソッド呼び出し
+            Vector3 pos = iron.transform.position;
+
+            if (pos.y < -6) {
+                GameOver();
                 isActive = false;
             }
 
-            if (Mathf.Approximately(pos.y, maxY)) {
+            if (pos.y > 6) {
                 IronUP();
                 isActive = false;
             }
