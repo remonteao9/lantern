@@ -10,6 +10,8 @@ public class WebBridge : MonoBehaviour {
     [DllImport("__Internal")] private static extern void UpdateGameItems();
     [DllImport("__Internal")] private static extern void UpdateItemText(string itemName, string itemId, string sceneName);
     [DllImport("__Internal")] private static extern void UpdateItemIcon(string imgPath, string fileName);
+    [DllImport("__Internal")] private static extern void UnSelectedItemButtons();
+
 
     public static WebBridge instance = null;
 
@@ -19,11 +21,14 @@ public class WebBridge : MonoBehaviour {
         if (instance != null) Destroy(gameObject);
 #if UNITY_WEBGL && !UNITY_EDITOR
         SetSceneName(mainSceneName, "Main.png", "ランタン", "");
-        AddGameItem(mainSceneName);
 
         // シューティング
         var sceneName = "ShootGameScene";
         SetSceneName(sceneName, "Shoot.png", "蚊シューティング", "UFOは無視して、<br>蚊を銃で撃ち殺しましょう。");
+        AddGameItem(sceneName);
+
+        sceneName = "MagnetGameScene";
+        SetSceneName(sceneName, "Magnet.png", "ふわふわキープ", "磁石を落とさないようにしよう。<br>Aで右、Dで左に移動");
         AddGameItem(sceneName);
 
         UpdateContent("MainGameScene");
@@ -41,7 +46,7 @@ public class WebBridge : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
 #if UNITY_WEBGL && !UNITY_EDITOR
         UpdateContent(sceneName);
-        // jsのボタンを全部オンに
+        UnSelectedItemButtons();
 #endif
     }
 

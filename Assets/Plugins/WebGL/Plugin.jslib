@@ -84,6 +84,7 @@ mergeInto(LibraryManager.library, {
     scrollList.innerHTML = "";
 
     const gameItems = window.gameItems;
+    window.gameItems = null;
 
     gameItems.forEach((data) => {
       const itemDiv = document.createElement("div");
@@ -96,14 +97,24 @@ mergeInto(LibraryManager.library, {
 
       itemDiv.appendChild(img);
       scrollList.appendChild(itemDiv);
+    });
 
-      itemDiv.addEventListener("click", () => {
-        SendMessage("WebBridge", "SelectItem", data.sceneName );
+
+    const buttons = scrollList.querySelectorAll(".scroll-item");
+    buttons.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains("selected")) return;
+        buttons.forEach(b => b.classList.remove("selected"));
+
+        btn.classList.add("selected");
+
+        SendMessage("WebBridge", "SelectItem", gameItems[index].sceneName);
       });
     });
 
     scrollList.style.transformOrigin = "center center";
   },
+
 
   UpdateItemIcon: function (sceneNamePtr, fileNamePtr) {
     const sceneName = UTF8ToString(sceneNamePtr);
@@ -133,5 +144,18 @@ mergeInto(LibraryManager.library, {
             SendMessage("WebBridge", "SetGameItem", `${itemId}+${sceneName}` );
         });
     }, 0);
+  },
+
+  DisabledItemButton: function (sceneNamePtr) {
+    const sceneName = UTF8ToString(sceneNamePtr);
+
+    const button = document.getElementById(sceneName);
+    button.querySelector("img").src = "images/item/item.png";
+    button.classList.remove("selected");
+  },
+
+  UnSelectedItemButtons: function () {
+    const buttons = scrollList.querySelectorAll(".scroll-item");
+    buttons.forEach(b => b.classList.remove("selected"));
   }
 });

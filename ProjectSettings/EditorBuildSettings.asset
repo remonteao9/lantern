@@ -10,11 +10,11 @@ EditorBuildSettings:
     guid: 15996daf79cf83d4b9319e13b5c01313
   - enabled: 1
     path: Assets/Scenes/MainGameScene.unity
-    guid: 9442ce51067126141a7892944c54ad2e
+    guid: 3b2190b110f0f904a9e292565f07ff62
   - enabled: 1
     path: Assets/Scenes/ShootGameScene.unity
     guid: 496586fb4db07b84e8d587adb3b1b832
   - enabled: 1
-    path: Assets/Scenes/GravityGameScene.unity
+    path: Assets/Scenes/MagnetGameScene.unity
     guid: c1902c9777002fc4c91d131aee0d60cc
   m_configObjects: {}

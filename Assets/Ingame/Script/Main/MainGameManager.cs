@@ -35,5 +35,6 @@ public class MainGameManager : MonoBehaviour
         var newObj = itemNameToItemDict[newObjName];
 
         EditMode.instance.editObject = newObj;
+        EditMode.instance.editObjectScene = scenenName;
     }
 }
