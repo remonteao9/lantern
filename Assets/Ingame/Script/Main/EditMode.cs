@@ -1,11 +1,14 @@
 ﻿
 using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEngine.Tilemaps.TilemapRenderer;
+using TMPro;
+using DG.Tweening;
 
 public class EditMode : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer editSprite;
+    [SerializeField] private GameObject placementModeWindow;
+    [SerializeField] private TMP_Text onOffText;
 
     [DllImport("__Internal")] private static extern void DisabledItemButton(string sceneName);
 
@@ -62,5 +65,17 @@ public class EditMode : MonoBehaviour
     public void ChangeEdit(GameObject obj, string sceneName) {
         editObject = obj;
         editObjectScene = sceneName;
+        if (obj) {
+            onOffText.text = "PLACEMENT MODE\nON";
+            onOffText.color = Color.yellow;
+        }
+        else {
+            onOffText.text = "PLACEMENT MODE\nOFF";
+            onOffText.color = Color.cyan;
+        }
+        placementModeWindow.SetActive(true);
+        placementModeWindow.transform.DOKill();
+        placementModeWindow.transform.localScale = Vector3.one;
+        placementModeWindow.transform.DOScale(Vector3.zero, 0.5f).SetDelay(0.5f).OnComplete(() => placementModeWindow.SetActive(false));
     }
 }
