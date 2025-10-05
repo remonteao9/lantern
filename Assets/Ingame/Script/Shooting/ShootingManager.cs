@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using DG.Tweening;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class ShootingManager : MonoBehaviour
 {
@@ -13,7 +12,9 @@ public class ShootingManager : MonoBehaviour
 
     [SerializeField] private Camera mainCamera;
 
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject clearCanvas;
+    [SerializeField] private GameObject gameOverCanvas;
+
     [SerializeField] private GameObject ufo;
 
     [SerializeField] private AudioSource hitSource;
@@ -24,40 +25,54 @@ public class ShootingManager : MonoBehaviour
     [SerializeField] private AudioClip clearSound;
 
     private Action clearAction;
+    private Action gameOverAction;
+
+    private float time = 10;
+    [SerializeField] private TextMeshProUGUI timeText;
+    private bool isActive = true;
 
 
     private void Awake() {
         hitSource.clip = hitSound;
         gunSorce.clip = gunSound;
         clearSource.clip = clearSound;
-        canvas.SetActive(false);
-
-        foreach (GameObject target in targetList) {
-            target.transform.DOShakePosition(10, new Vector2(0.1f,0.1f), 10, 90,fadeOut:false).SetLoops(-1, LoopType.Restart).SetLink(target.gameObject);
-        }
+        clearCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
 
         StartCoroutine(MakeUfo());
 
         clearAction += Clear;
+        gameOverAction += GameOver;
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            gunSorce.Play();
-            if (hit.collider != null) {
-                GameObject obj = hit.collider.gameObject;
-                if (obj.tag == "UFO") {
-                    Debug.Log("UFO");
-                    GameItems.SetItem("UFO");
+        if(isActive) {
+            if (Input.GetMouseButtonDown(0)) {
+                RaycastHit2D hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                gunSorce.Play();
+                if (hit.collider != null) {
+                    GameObject obj = hit.collider.gameObject;
+                    if (obj.tag == "UFO") {
+                        Debug.Log("UFO");
+                        GameItems.SetItem("UFO");
+                    }
+                    else {
+                        targetList.Remove(obj);
+                        // 蚊
+                        GameItems.SetItem("蚊");
+                    }
+                    StartCoroutine(BreakObject(hit));
                 }
-                else {
-                    targetList.Remove(obj);
-                    // 蚊
-                    GameItems.SetItem("蚊");
-                }
-                StartCoroutine(BreakObject(hit));
             }
+        }
+
+        if(time <= 0) {
+            gameOverAction?.Invoke();
+            isActive = false;
+        }
+        else if(isActive){
+            time -= Time.deltaTime;
+            timeText.text = time.ToString("F0");
         }
     }
 
@@ -74,16 +89,35 @@ public class ShootingManager : MonoBehaviour
     }
 
     private void Clear() {
+        isActive = false;
         clearAction -= Clear;
-        canvas.SetActive(true);
+        clearCanvas.SetActive(true);
         clearSource.Play();
         GameItems.SetItem("銃");
+    }
+
+    private void GameOver() {
+        gameOverAction -= GameOver;
+        GameOverAction();
+    }
+
+    private void GameOverAction() {
+        StopMosquite();
+        gameOverCanvas.SetActive(true);
     }
 
 
     private IEnumerator MakeUfo() {
         yield return new WaitForSeconds(3f);
-        Instantiate(ufo);
+        if (isActive) {
+            Instantiate(ufo);
+        }
+    }
+
+    private void StopMosquite() {
+        foreach (var obj in targetList) {
+            obj.gameObject.GetComponent<MosquiteController>().Deactivate();
+        }
     }
 
 }
