@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7542015505125725670}
   - component: {fileID: 2754601973821126430}
   - component: {fileID: 2982706699418964826}
+  - component: {fileID: 2958106637506695161}
   m_Layer: 0
   m_Name: MN_mosquito
   m_TagString: Untagged
@@ -99,4 +100,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7665039936293129611, guid: 4d960713e47b6694d9f0687b74400ba7, type: 3}
   speed: 3
-  obj: {fileID: 0}
+  obj: {fileID: 7649828673963864446}
+--- !u!58 &2958106637506695161
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649828673963864446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75

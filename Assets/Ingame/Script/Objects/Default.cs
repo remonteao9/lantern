@@ -1,10 +1,17 @@
-﻿public class Default {
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
-    private void OnHitGun() {
+public abstract class Default : MonoBehaviour{
 
-    }
+    public abstract IEnumerator Mosquito();
 
-    private void OnHitMosquito() {
+    public abstract IEnumerator Gun();
 
-    }
+    public abstract IEnumerator Ufo();
+
+    public abstract void Magunet();
+
+    public abstract IEnumerator Gravity();
+
 }
