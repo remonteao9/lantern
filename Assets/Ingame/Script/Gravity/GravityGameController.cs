@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public class GravityGameController : MonoBehaviour {
 
     private bool isActive = false;
 
+    private static HashSet<Item> obtainedItems = new();
+
     private void Awake() {
 
         clearPanel.SetActive(false);
@@ -32,6 +35,10 @@ public class GravityGameController : MonoBehaviour {
         isActive = true;
         audioSource.clip = audioClip;
         audioSource.Play();
+
+        foreach (var item in obtainedItems) {
+            GameItems.SetItem(item);
+        }
     }
 
     void Update() {
@@ -82,18 +89,21 @@ public class GravityGameController : MonoBehaviour {
     private void GameClear() {
         magnetController.ChengeActive(false);
         clearPanel.SetActive(true);
+        obtainedItems.Add(Item.Magnet);
         GameItems.SetItem(Item.Magnet);
     }
 
     private void GameOver() {
         magnetController.ChengeActive(false);
         gameOverPanel.SetActive(true);
+        obtainedItems.Add(Item.Iron);
         GameItems.SetItem(Item.Iron);
     }
 
     private void IronUP() {
         magnetController.ChengeActive(false);
         IronUpPanel.SetActive(true);
+        obtainedItems.Add(Item.MagneticForce);
         GameItems.SetItem(Item.MagneticForce);
     }
 }

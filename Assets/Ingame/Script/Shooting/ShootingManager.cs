@@ -30,7 +30,7 @@ public class ShootingManager : MonoBehaviour
     private float time = 10;
     [SerializeField] private TextMeshProUGUI timeText;
     private bool isActive = true;
-
+    private static HashSet<Item> obtainedItems = new();
 
     private void Awake() {
         hitSource.clip = hitSound;
@@ -43,6 +43,10 @@ public class ShootingManager : MonoBehaviour
 
         clearAction += Clear;
         gameOverAction += GameOver;
+
+        foreach (var item in obtainedItems) {
+            GameItems.SetItem(item);
+        }
     }
 
     private void Update() {
@@ -53,12 +57,13 @@ public class ShootingManager : MonoBehaviour
                 if (hit.collider != null) {
                     GameObject obj = hit.collider.gameObject;
                     if (obj.tag == "UFO") {
-                        Debug.Log("UFO");
+                        obtainedItems.Add(Item.Ufo);
                         GameItems.SetItem(Item.Ufo);
                     }
                     else {
                         targetList.Remove(obj);
                         // 蚊
+                        obtainedItems.Add(Item.Mosquite);
                         GameItems.SetItem(Item.Mosquite);
                     }
                     StartCoroutine(BreakObject(hit));
@@ -93,6 +98,7 @@ public class ShootingManager : MonoBehaviour
         clearAction -= Clear;
         clearCanvas.SetActive(true);
         clearSource.Play();
+        obtainedItems.Add(Item.Gun);
         GameItems.SetItem(Item.Gun);
     }
 
