@@ -24,13 +24,13 @@ public class PlayerController : MNActor {
 
         if (isActive) {
             pos = transform.position;
-
-            if (Input.GetKey(KeyCode.A)) {
+            float horizontal = Input.GetAxis("Horizontal");
+            if (horizontal > 0) {
                 newPos = pos;
                 newPos.x -= 7f * Time.deltaTime;
                 transform.position = newPos;
             }
-            else if (Input.GetKey(KeyCode.D)) {
+            else if (horizontal > 0) {
                 newPos = pos;
                 newPos.x += 7f * Time.deltaTime;
                 transform.position = newPos;
