@@ -62,8 +62,10 @@ public class WebBridge : MonoBehaviour {
 
     }
 
-    public static void GetGameItem(string itemName) {
+    internal static void GetGameItem(string itemName) {
+#if UNITY_WEBGL && !UNITY_EDITOR
         UpdateItemText(itemName, GameItems.itemNameToCode[itemName].ToString(), SceneManager.GetActiveScene().name);
+#endif
     }
 
     public void SelectItem(string sceneName) {
