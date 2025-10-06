@@ -25,7 +25,7 @@ public class PlayerController : MNActor {
         if (isActive) {
             pos = transform.position;
             float horizontal = Input.GetAxis("Horizontal");
-            if (horizontal > 0) {
+            if (horizontal < 0) {
                 newPos = pos;
                 newPos.x -= 7f * Time.deltaTime;
                 transform.position = newPos;
