@@ -14,12 +14,12 @@ public class MagnetController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A)) {
                 newPos = pos;
-                newPos.x -= 0.07f;
+                newPos.x -= 7f * Time.deltaTime;
                 transform.position = newPos;
             }
             else if (Input.GetKey(KeyCode.D)) {
                 newPos = pos;
-                newPos.x += 0.07f;
+                newPos.x += 7f * Time.deltaTime;
                 transform.position = newPos;
             }
         }
