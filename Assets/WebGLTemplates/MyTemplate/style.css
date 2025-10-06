@@ -1,50 +1,41 @@
-
-
 .page {
     display: flex;
-    gap: 70px;
+    flex-wrap: wrap;
+    gap: 40px;
     max-width: 1500px;
     margin: 0 auto;
     background: #f8f8f8;
     font-family: "Noto Sans JP", sans-serif;
 }
 
-
 .left-column {
-    flex: 2;
+    flex: 2 1 600px;
     padding: 20px;
     padding-bottom: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background: #f8f8f8;
 }
-
 
 .canvas-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin-top: 10px;
 }
-
 
 #unity-canvas {
     width: 100%;
     max-width: 960px;
-
     aspect-ratio: 16 / 9;
-    
     background: #000;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     display: block;
 }
-
 
 .game-title {
     max-width: 960px;
@@ -52,29 +43,22 @@
     text-align: center;
     margin-top: 10px;
     font-size: clamp(24px, 3vw, 40px);
-    
     font-weight: bold;
     color: #333;
 }
 
 .game-summary {
     max-width: 960px;
-    
     margin: 3px auto 0;
-    
     text-align: center;
-    
     font-size: clamp(16px, 1.8vw, 20px);
-    
     line-height: 1.6;
-    
     color: #555;
     font-weight: 400;
 }
 
-
 .right-column {
-    flex: 1;
+    flex: 1 1 320px;
     padding: 20px;
     background: #fff;
     box-sizing: border-box;
@@ -83,10 +67,11 @@
     overflow-y: auto;
 }
 
-
 .item-card {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     background: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -103,7 +88,9 @@
     align-items: center;
     text-align: center;
     flex: 1;
+    min-width: 200px;
 }
+
 .item-card:hover {
     cursor: pointer;
     transform: translateY(-2px);
@@ -121,13 +108,15 @@
 }
 
 .item-thumb {
-    width: 192px;
-    height: 108px;
+    width: 100%;
+    max-width: 192px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 8px;
     margin-right: 16px;
     flex-shrink: 0;
     background: #ddd;
+    display: block;
 }
 
 .scroll-wrapper {
@@ -148,7 +137,7 @@
     align-items: center;
     justify-content: flex-start;
     transition: transform 0.3s ease;
-    background-color:lightgrey
+    background-color: lightgrey;
 }
 
 .scroll-item {
@@ -176,7 +165,7 @@
 
 .scroll-item.selected {
     border: 5px solid yellow;
-    border-radius: 6px
+    border-radius: 6px;
 }
 
 .scroll-wrapper::-webkit-scrollbar {
@@ -195,4 +184,25 @@
 .word-button:active {
     transform: scale(0.95);
     background: #ffdddd;
+}
+
+@media (max-width: 900px) {
+    .page {
+        flex-direction: column;
+    }
+
+    .right-column {
+        border-left: none;
+        border-top: 1px solid #ddd;
+        max-height: none;
+    }
+
+    .item-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .item-thumb {
+        margin: 0 auto 12px auto;
+    }
 }
