@@ -3,18 +3,14 @@ using System.Collections.Generic;
 
 public　static class GameItems
 {
-    public static Dictionary<string, int> itemNameToCode = new Dictionary<string, int>() {
-        { "銃", 0 },
-        { "蚊", 0 },
-        { "UFO", 0 },
-        { "磁石", 0 },
-        { "鉄", 0 },
-        { "磁力", 0 },
+    public static Dictionary<string, string> itemNameToCode = new Dictionary<string, string>() {
+        { "銃", string.Empty },
+        { "蚊", string.Empty },
+        { "UFO", string.Empty},
+        { "磁石", string.Empty },
+        { "鉄", string.Empty },
+        { "磁力", string.Empty },
     };
-
-    static GameItems() {
-        RandomizeValues();
-    }
 
 
     // codeをタグにつける。タグについたコードが返ってきた(ボタンが押された)ら、対応するオブジェクトをメインに反映する。
@@ -25,12 +21,12 @@ public　static class GameItems
         WebBridge.GetGameItem(itemName);
     }
 
-    private static void RandomizeValues() {
+    public static void RandomizeValues() {
         var random = new System.Random();
         var keys = new List<string>(itemNameToCode.Keys);
 
         foreach (var key in keys) {
-            itemNameToCode[key] = random.Next(10000, 99999);
+            itemNameToCode[key] = "item" + random.Next(10000, 99999);
         }
     }
 }

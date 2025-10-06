@@ -134,20 +134,46 @@ mergeInto(LibraryManager.library, {
     const sceneName = UTF8ToString(sceneNamePtr);
     const gameSummary = document.getElementById("game-summary");
 
-    if (gameSummary.innerHTML.includes(`id="${itemId}"`)) {
+    if (document.getElementById(itemId)) {
       return;
     }
-    gameSummary.innerHTML = gameSummary.innerHTML.replace(
-        new RegExp(`(${itemName})`, "g"),
-        `<button id="${itemId}" class="word-button">$1</button>`
-    );
-    setTimeout(() => {
-        const btn = document.getElementById(itemId);
 
-        btn.addEventListener("click", () => {
-            SendMessage("WebBridge", "SetGameItem", `${itemId}+${sceneName}` );
-        });
-    }, 0);
+    const walker = document.createTreeWalker(
+      gameSummary,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
+
+    let targetNode = null;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.nodeValue.includes(itemName)) {
+        targetNode = node;
+        break;
+      }
+    }
+
+    if (!targetNode) {
+      return;
+    }
+
+    const parts = targetNode.nodeValue.split(itemName);
+    const beforeText = document.createTextNode(parts[0]);
+    const afterText = document.createTextNode(parts[1]);
+
+    const button = document.createElement("button");
+    button.id = itemId;
+    button.className = "word-button";
+    button.textContent = itemName;
+    button.addEventListener("click", () => {
+      SendMessage("WebBridge", "SetGameItem", `${itemId}+${sceneName}`);
+    });
+
+    const parent = targetNode.parentNode;
+    parent.replaceChild(afterText, targetNode);
+    parent.insertBefore(button, afterText);
+    parent.insertBefore(beforeText, button);
   },
 
   DisabledItemButton: function (sceneNamePtr) {

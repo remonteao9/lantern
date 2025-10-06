@@ -19,7 +19,7 @@ public class WebBridge : MonoBehaviour {
 
     public void OnReady() {
         if (instance != null) Destroy(gameObject);
-#if UNITY_WEBGL && !UNITY_EDITOR
+        GameItems.RandomizeValues();
         SetSceneName(mainSceneName, "Main.png", "運動会", "メイン種目！ゴールできない...");
 
         // シューティング
@@ -33,7 +33,6 @@ public class WebBridge : MonoBehaviour {
 
         UpdateContent("MainGameScene");
         UpdateGameItems();
-#endif
 
         DontDestroyOnLoad(gameObject);
         instance = this;
@@ -44,10 +43,8 @@ public class WebBridge : MonoBehaviour {
         if (!SceneExists(sceneName)) return;
 
         SceneManager.LoadScene(sceneName);
-#if UNITY_WEBGL && !UNITY_EDITOR
         UpdateContent(sceneName);
         UnSelectedItemButtons();
-#endif
     }
 
     public void SetGameItem(string itemCodePlusSceneName) {
@@ -56,7 +53,7 @@ public class WebBridge : MonoBehaviour {
         var sceneName = parts[1];
         // コードが一致するアイテム(名)をセット中アイテムにセット
         foreach (var itemName in GameItems.itemNameToCode.Keys) {
-            if (GameItems.itemNameToCode[itemName].ToString() == itemCode) {
+            if (GameItems.itemNameToCode[itemName] == itemCode) {
                 GameItems.selectedItemNameDict[sceneName] = itemName;
                 UpdateItemIcon(sceneName, itemName + ".png");
                 break;
@@ -66,9 +63,7 @@ public class WebBridge : MonoBehaviour {
     }
 
     public static void GetGameItem(string itemName) {
-#if UNITY_WEBGL && !UNITY_EDITOR
         UpdateItemText(itemName, GameItems.itemNameToCode[itemName].ToString(), SceneManager.GetActiveScene().name);
-#endif
     }
 
     public void SelectItem(string sceneName) {
