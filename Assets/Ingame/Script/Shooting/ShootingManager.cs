@@ -54,12 +54,12 @@ public class ShootingManager : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
                     if (obj.tag == "UFO") {
                         Debug.Log("UFO");
-                        GameItems.SetItem("UFO");
+                        GameItems.SetItem(Item.Ufo);
                     }
                     else {
                         targetList.Remove(obj);
                         // 蚊
-                        GameItems.SetItem("蚊");
+                        GameItems.SetItem(Item.Mosquite);
                     }
                     StartCoroutine(BreakObject(hit));
                 }
@@ -93,7 +93,7 @@ public class ShootingManager : MonoBehaviour
         clearAction -= Clear;
         clearCanvas.SetActive(true);
         clearSource.Play();
-        GameItems.SetItem("銃");
+        GameItems.SetItem(Item.Gun);
     }
 
     private void GameOver() {

@@ -82,18 +82,18 @@ public class GravityGameController : MonoBehaviour {
     private void GameClear() {
         magnetController.ChengeActive(false);
         clearPanel.SetActive(true);
-        GameItems.SetItem("磁石");
+        GameItems.SetItem(Item.Magnet);
     }
 
     private void GameOver() {
         magnetController.ChengeActive(false);
         gameOverPanel.SetActive(true);
-        GameItems.SetItem("鉄");
+        GameItems.SetItem(Item.Iron);
     }
 
     private void IronUP() {
         magnetController.ChengeActive(false);
         IronUpPanel.SetActive(true);
-        GameItems.SetItem("磁力");
+        GameItems.SetItem(Item.MagneticForce);
     }
 }

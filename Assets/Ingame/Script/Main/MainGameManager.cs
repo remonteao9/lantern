@@ -12,9 +12,6 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private GameObject iron;
     [SerializeField] private GameObject magneticForce;
 
-    public static Dictionary<string, GameObject> itemNameToItemDict = new Dictionary<string, GameObject>();
-
-
 
     // 生成モードで対応シーン名を受け取りselectedItemNameDictの値を参照してitemNametoItemする
 
@@ -27,18 +24,18 @@ public class MainGameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        itemNameToItemDict["蚊"] = mosquito;
-        itemNameToItemDict["銃"] = gun;
-        itemNameToItemDict["UFO"] = ufo;
-        itemNameToItemDict["磁石"] = magnet;
-        itemNameToItemDict["鉄"] = iron;
-        itemNameToItemDict["磁力"] = magneticForce;
+        GameItems.itemObjectDict[Item.Mosquite] = mosquito;
+        GameItems.itemObjectDict[Item.Gun] = gun;
+        GameItems.itemObjectDict[Item.Ufo] = ufo;
+        GameItems.itemObjectDict[Item.Magnet] = magnet;
+        GameItems.itemObjectDict[Item.Iron] = iron;
+        GameItems.itemObjectDict[Item.MagneticForce] = magneticForce;
     }
 
     public void StartEditMode(string scenenName) {
         if (EditMode.instance == null) return;
         var newObjName = GameItems.selectedItemNameDict[scenenName];
-        var newObj = itemNameToItemDict[newObjName];
+        var newObj = GameItems.itemObjectDict[newObjName];
 
         EditMode.instance.ChangeEdit(newObj, scenenName);
     }

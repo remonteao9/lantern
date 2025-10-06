@@ -19,7 +19,7 @@ public class WebBridge : MonoBehaviour {
 
     public void OnReady() {
         if (instance != null) Destroy(gameObject);
-        GameItems.RandomizeValues();
+        GameItems.RandomizeItemKeys();
         SetSceneName(mainSceneName, "Main.png", "運動会", "メイン種目！ゴールできない...");
 
         // シューティング
@@ -52,19 +52,15 @@ public class WebBridge : MonoBehaviour {
         var itemCode = parts[0];
         var sceneName = parts[1];
         // コードが一致するアイテム(名)をセット中アイテムにセット
-        foreach (var itemName in GameItems.itemNameToCode.Keys) {
-            if (GameItems.itemNameToCode[itemName] == itemCode) {
-                GameItems.selectedItemNameDict[sceneName] = itemName;
-                UpdateItemIcon(sceneName, itemName + ".png");
-                break;
-            }
-        }
-
+        var item = GameItems.itemCodeDict[itemCode];
+        GameItems.selectedItemNameDict[sceneName] = item;
+        UpdateItemIcon(sceneName, GameItems.itemNameDict[item] + ".png");
     }
 
     internal static void GetGameItem(string itemName) {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        UpdateItemText(itemName, GameItems.itemNameToCode[itemName].ToString(), SceneManager.GetActiveScene().name);
+        var code = GameItems.GetCodeFromItemName(itemName);
+        UpdateItemText(itemName, code, SceneManager.GetActiveScene().name);
 #endif
     }
 
